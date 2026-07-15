@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>台東 x 墾丁家庭旅行</title>
+  <meta name="description" content="台東 x 墾丁四日家庭旅行助手">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="trip-header">
+      <p class="kicker">7/21-7/24</p>
+      <h1>台東 x 墾丁家庭旅行</h1>
+      <p id="progressText" class="progress-text">Day 1｜今日第 1 / 5 站</p>
+      <div class="progress-track" aria-label="全程進度">
+        <span id="progressBar"></span>
+      </div>
+    </header>
+
+    <section id="currentStop" class="current-card" aria-live="polite"></section>
+
+    <section class="quick-panels" aria-label="行程清單">
+      <details id="todayDetails" class="panel">
+        <summary>查看今日完整行程</summary>
+        <div id="todayList" class="stop-list"></div>
+      </details>
+
+      <details class="panel">
+        <summary>查看四天行程</summary>
+        <div id="allList" class="stop-list"></div>
+      </details>
+    </section>
+
+    <details class="parent-tools">
+      <summary>家長工具</summary>
+      <div id="parentToolsContent" class="parent-actions"></div>
+    </details>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-sheet">
+      <button class="modal-close" type="button" aria-label="關閉" data-close-modal>×</button>
+      <h2 id="modalTitle"></h2>
+      <div id="modalBody" class="modal-body"></div>
+    </section>
+  </div>
+
+  <script src="data/itinerary.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
