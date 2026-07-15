@@ -54,6 +54,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html:has(body.modal-open),
+body.modal-open {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -596,17 +601,19 @@ summary {
 }
 
 .modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: fixed;
+  top: max(10px, calc(env(safe-area-inset-top) + 10px));
+  right: max(10px, calc(env(safe-area-inset-right) + 10px));
+  z-index: 70;
   width: 44px;
   height: 44px;
   border: 0;
   border-radius: 999px;
-  background: #eef1ef;
-  color: var(--ink);
+  background: rgba(18, 25, 30, 0.74);
+  color: #ffffff;
   font-size: 1.5rem;
   cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
 }
 
 .modal-sheet h2 {
@@ -666,7 +673,7 @@ summary {
 .image-viewer {
   position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: 60;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -709,20 +716,22 @@ summary {
 .viewer-close,
 .viewer-nav {
   position: fixed;
-  z-index: 2;
+  z-index: 90;
   border: 0;
   color: white;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(18, 25, 30, 0.78);
   cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
 
 .viewer-close {
-  top: 12px;
-  right: 12px;
-  width: 46px;
-  height: 46px;
+  top: max(12px, calc(env(safe-area-inset-top) + 12px));
+  right: max(12px, calc(env(safe-area-inset-right) + 12px));
+  width: 48px;
+  height: 48px;
   border-radius: 999px;
-  font-size: 1.6rem;
+  font-size: 1.85rem;
+  line-height: 1;
 }
 
 .viewer-nav {

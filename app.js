@@ -26,7 +26,7 @@
     <div class="viewer-backdrop" data-close-viewer></div>
     <button class="viewer-close" type="button" aria-label="關閉" data-close-viewer>×</button>
     <button class="viewer-nav viewer-prev" type="button" aria-label="上一張">‹</button>
-    <div class="viewer-stage">
+    <div class="viewer-stage" data-close-viewer>
       <img id="viewerImage" alt="">
     </div>
     <button class="viewer-nav viewer-next" type="button" aria-label="下一張">›</button>
@@ -216,12 +216,14 @@
     elements.modalTitle.textContent = title;
     elements.modalBody.innerHTML = bodyHtml;
     elements.modal.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
   }
 
   function closeModal() {
     elements.modal.classList.add("hidden");
-    document.body.style.overflow = "";
+    if (viewer.classList.contains("hidden")) {
+      document.body.classList.remove("modal-open");
+    }
   }
 
   function openResetConfirmModal() {
@@ -285,14 +287,16 @@
     if (!hasList(viewerImages)) return;
     showViewerImage(index || 0);
     viewer.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
   }
 
   function closeViewer() {
     viewer.classList.add("hidden");
     viewerImage.removeAttribute("src");
     viewerImages = [];
-    document.body.style.overflow = elements.modal.classList.contains("hidden") ? "" : "hidden";
+    if (elements.modal.classList.contains("hidden")) {
+      document.body.classList.remove("modal-open");
+    }
   }
 
   function zoomViewer(delta, originX, originY) {
